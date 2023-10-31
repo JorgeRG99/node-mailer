@@ -17,6 +17,8 @@ app.use((req, res, next) => {
 });
 
 app.post('/sendMail', async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  
   const { to, subject, html } = req.body
 
   const CLIENT_ID = '389196242479-01fnjob369jc4c3tiqtbqngbkl57io2t.apps.googleusercontent.com'
