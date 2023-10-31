@@ -1,0 +1,9 @@
+POST http://localhost:1234/sendMail
+Content-Type: application/json
+
+{
+  "to": "megalodon621@gmail.com",
+  "subject": "test",
+  "html": "<h1>Hello from gmail email using API</h1>"
+}
+
