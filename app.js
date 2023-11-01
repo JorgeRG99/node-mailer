@@ -1,27 +1,32 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const { google } = require("googleapis");
+const cors = require('cors')
 
 const app = express()
 app.use(express.json())
 app.disable('x-powered-by')
 
-/* // CORS
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-}); */
+// CORS
+app.use(cors({
+  origin: (origin, callback) => {
+    const ACCEPTED_ORIGINGS = [
+      'http://localhost:8888'
+    ]
+
+    if (ACCEPTED_ORIGINGS.includes(origin)) {
+      return callback(null, true)
+    }
+
+    if (!origin) {
+      return callback(null, true)
+    }
+
+    return callback(new Error('Not allowed by CORS'))
+  }
+}))
 
 app.post('/sendMail', async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Credentials', 'true');
-
   const { to, subject, html } = req.body
 
   const CLIENT_ID = '389196242479-01fnjob369jc4c3tiqtbqngbkl57io2t.apps.googleusercontent.com'
