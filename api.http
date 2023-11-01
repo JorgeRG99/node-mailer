@@ -1,4 +1,4 @@
-POST https://node-mailer-dev-npxb.1.ie-1.fl0.io/sendMail
+POST http://localhost:1234/sendMail
 Content-Type: application/json
 
 {

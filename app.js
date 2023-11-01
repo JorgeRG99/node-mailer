@@ -1,16 +1,34 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const { google } = require("googleapis");
+const cors = require('cors')
 
 const app = express()
 app.use(express.json())
 app.disable('x-powered-by')
 
-app.post('/sendMail', async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+app.use(cors({
+  origin: (origin, callback) => {
+    const ACCEPTED_ORIGINGS = [
+      'http://localhost:8080',
+      'http://127.0.0.1:54571',
+    ]
 
-  const { to, subject, html } = req.body
+    if (ACCEPTED_ORIGINGS.includes(origin)) {
+      return callback(null, true)
+    }
+
+    if (!origin) {
+      return callback(null, true)
+    }
+
+    return callback(new Error('Not allowed by CORS'))
+  }
+}))
+
+app.get('/sendMail/:email', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  const { email } = req.params
 
   const CLIENT_ID = '389196242479-01fnjob369jc4c3tiqtbqngbkl57io2t.apps.googleusercontent.com'
   const CLIENT_SECRET = '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'
@@ -21,7 +39,7 @@ app.post('/sendMail', async (req, res) => {
   oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN })
 
   try {
-    const accessToken = await oAuth2Client.getAccessToken();
+    const accessToken = oAuth2Client.getAccessToken();
 
     const transport = nodemailer.createTransport({
       service: 'gmail',
@@ -37,13 +55,13 @@ app.post('/sendMail', async (req, res) => {
 
     const mailOptions = {
       from: 'buyjorgito@gmail.com',
-      to: to,
-      subject: subject,
-      text: 'Hello from gmail email using API',
-      html: html,
+      to: email,
+      subject: 'Booking',
+      text: 'Booking done successfully',
+      html: 'Booking done successfully!',
     };
 
-    const result = await transport.sendMail(mailOptions);
+    const result = transport.sendMail(mailOptions);
 
     res.status(200).json({ response: result })
   } catch (error) {
