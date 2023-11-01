@@ -8,9 +8,7 @@ app.disable('x-powered-by')
 
 app.post('/sendMail', async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'POST');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
   const { to, subject, html } = req.body
 
