@@ -19,6 +19,7 @@ app.use((req, res, next) => {
 app.post('/sendMail', async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 
   const { to, subject, html } = req.body
 
