@@ -28,6 +28,7 @@ app.use(cors({
 
 app.post('/sendMail', async (req, res) => {
   const { to, subject, html } = req.body
+  res.setHeader()
 
   const CLIENT_ID = '389196242479-01fnjob369jc4c3tiqtbqngbkl57io2t.apps.googleusercontent.com'
   const CLIENT_SECRET = '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'

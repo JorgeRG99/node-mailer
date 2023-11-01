@@ -1,4 +1,4 @@
-POST http://localhost:1234/sendMail
+POST https://node-mailer-dev-aqgf.3.us-1.fl0.io/sendMail
 Content-Type: application/json
 
 {
