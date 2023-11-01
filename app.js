@@ -8,23 +8,9 @@ app.use(express.json())
 app.disable('x-powered-by')
 
 // CORS
-app.use(cors({
-  origin: (origin, callback) => {
-    const ACCEPTED_ORIGINGS = [
-      'http://localhost:8888'
-    ]
-
-    if (ACCEPTED_ORIGINGS.includes(origin)) {
-      return callback(null, true)
-    }
-
-    if (!origin) {
-      return callback(null, true)
-    }
-
-    return callback(new Error('Not allowed by CORS'))
-  }
-}))
+app.use((cors({
+  origin: 'http://localhost:8888'
+})))
 
 app.post('/sendMail', async (req, res) => {
   const { to, subject, html } = req.body
