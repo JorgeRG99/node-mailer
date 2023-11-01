@@ -1,20 +1,18 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const { google } = require("googleapis");
-const cors = require('cors')
 
 const app = express()
 app.use(express.json())
 app.disable('x-powered-by')
 
-// CORS
-app.use((cors({
-  origin: 'http://localhost:8888'
-})))
-
 app.post('/sendMail', async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'POST');
+
   const { to, subject, html } = req.body
-  res.setHeader()
 
   const CLIENT_ID = '389196242479-01fnjob369jc4c3tiqtbqngbkl57io2t.apps.googleusercontent.com'
   const CLIENT_SECRET = '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'
