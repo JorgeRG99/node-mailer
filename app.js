@@ -10,7 +10,7 @@ app.disable('x-powered-by')
 app.use(cors({
   origin: (origin, callback) => {
     const ACCEPTED_ORIGINGS = [
-      'http://localhost:8080',
+      'http://localhost:8888',
       'http://127.0.0.1:54571',
     ]
 
