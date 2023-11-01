@@ -67,6 +67,7 @@ const PORT = process.env.PORT ?? 1234
 
 app.options('/sendMail', (res, req) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Credentials', 'true');
