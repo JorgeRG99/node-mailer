@@ -6,7 +6,7 @@ const app = express()
 app.use(express.json())
 app.disable('x-powered-by')
 
-// CORS
+/* // CORS
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.header(
@@ -14,11 +14,12 @@ app.use((req, res, next) => {
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
-});
+}); */
 
 app.post('/sendMail', async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+
   const { to, subject, html } = req.body
 
   const CLIENT_ID = '389196242479-01fnjob369jc4c3tiqtbqngbkl57io2t.apps.googleusercontent.com'
