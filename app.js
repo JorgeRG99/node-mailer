@@ -1,30 +1,10 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const { google } = require("googleapis");
-const cors = require('cors')
 
 const app = express()
 app.use(express.json())
 app.disable('x-powered-by')
-
-app.use(cors({
-  origin: (origin, callback) => {
-    const ACCEPTED_ORIGINGS = [
-      'http://localhost:8888',
-      'http://127.0.0.1:54571',
-    ]
-
-    if (ACCEPTED_ORIGINGS.includes(origin)) {
-      return callback(null, true)
-    }
-
-    if (!origin) {
-      return callback(null, true)
-    }
-
-    return callback(new Error('Not allowed by CORS'))
-  }
-}))
 
 app.get('/sendMail/:email', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
