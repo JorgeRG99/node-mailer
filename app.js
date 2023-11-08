@@ -13,7 +13,7 @@ app.get('/sendMail/:email', (req, res) => {
   const CLIENT_ID = '389196242479-01fnjob369jc4c3tiqtbqngbkl57io2t.apps.googleusercontent.com'
   const CLIENT_SECRET = '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'
   const REDIRECT_URI = 'https://developers.google.com/oauthplayground'
-  const REFRESH_TOKEN = '1//04mmG8sMEp0FWCgYIARAAGAQSNwF-L9IrDzWyjEPMjy0Zlu8ULNPDJDjhgHyhXvINHHaDh35GeYsRBlFVnqBClbH5IBDHDV8yr9U'
+  const REFRESH_TOKEN = '1//04BapPyTXi75qCgYIARAAGAQSNwF-L9Ir4muSGclUQC6M85d7ckeND3rEmeH-AEGaxnoA5-KT7hKeJg7auj4ECxwEmdx0rBH3I_0'
 
   const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
   oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN })
