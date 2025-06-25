@@ -30,4 +30,4 @@ Node-Mailer is a lightweight application that enables reliable email delivery fo
 1. Clone the repository:
    ```bash
    git clone https://github.com/JorgeRG99/node-mailer.git
-   cd node-mailer```
+   cd node-mailer
